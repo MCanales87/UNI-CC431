@@ -1,0 +1,31 @@
+// Include GLEW
+#define GLEW_STATIC
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
+#include <opencv2\opencv.hpp>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp> // glm::value_ptr
+#include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
+#include "Utils.h"
+using namespace std;
+
+Utils::Utils() {}
+
+string Utils::readShaderFile(const char *filePath) {
+	string content;
+	ifstream fileStream(filePath, ios::in);
+	string line = "";
+	while (!fileStream.eof()) {
+		getline(fileStream, line);
+		content.append(line + "\n");
+	}
+	fileStream.close();
+	return content;
+}
+
+bool Utils::checkOpenGLError() {
+	bool foundError = false;
