@@ -172,6 +172,7 @@ GLuint Utils::loadTexture(const char *texImagePath) {
 	if( image.empty() ) {
 	      std::cout << "image empty" << std::endl;
 	} else {
+        //creando objeto textura
 		glGenTextures(1, &textureRef); //#:1 textura
 		// ----- mipmap/anisotropic section
 		glBindTexture(GL_TEXTURE_2D, textureRef);

@@ -42,7 +42,7 @@ void Torus::init() {
 		texCoords[i] = glm::vec2(0.0f, ((float)i / (float)prec));
 
 		rMat = glm::rotate(glm::mat4(1.0f), amt, glm::vec3(0.0f, 0.0f, 1.0f));
-		tTangents[i] = glm::vec3(rMat * glm::vec4(0.0f, -1.0f, 0.0f, 1.0f));
+		tTangents[i] = glm::vec3(rMat * glm::vec4(0.0f, -1.0f, 0.0f, 1.0f)); //-y
 
 		sTangents[i] = glm::vec3(glm::vec3(0.0f, 0.0f, -1.0f));
 		normals[i] = glm::cross(tTangents[i], sTangents[i]);

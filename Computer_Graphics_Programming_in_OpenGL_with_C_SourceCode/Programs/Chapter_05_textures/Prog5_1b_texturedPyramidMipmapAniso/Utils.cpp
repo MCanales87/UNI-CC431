@@ -175,7 +175,7 @@ GLuint Utils::loadTexture(const char *texImagePath) {
 		glGenTextures(1, &textureRef); //#:1 textura
 		// ----- mipmap/anisotropic section
 		glBindTexture(GL_TEXTURE_2D, textureRef);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 		cv::cvtColor(image, image, cv::COLOR_RGB2BGR);
 
 		  glTexImage2D(GL_TEXTURE_2D,         // Type of texture
@@ -190,11 +190,11 @@ GLuint Utils::loadTexture(const char *texImagePath) {
 							
 		glGenerateMipmap(GL_TEXTURE_2D);
 		
-		if (glewIsSupported("GL_EXT_texture_filter_anisotropic")) {
-			GLfloat anisoset = 0.0f;
-			glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &anisoset);
-			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, anisoset);
-		}
+		//~ if (glewIsSupported("GL_EXT_texture_filter_anisotropic")) {
+			//~ GLfloat anisoset = 0.0f;
+			//~ glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &anisoset);
+			//~ glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, anisoset);
+		//~ }
 	// ----- end of mipmap/anisotropic section
 	}
 	return textureRef;

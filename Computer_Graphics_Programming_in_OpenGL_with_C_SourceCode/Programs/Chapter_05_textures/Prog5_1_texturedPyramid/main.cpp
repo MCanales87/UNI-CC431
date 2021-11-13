@@ -65,14 +65,13 @@ void init(GLFWwindow* window) {
 	aspect = (float)width / (float)height;
 	pMat = glm::perspective(1.0472f, aspect, 0.1f, 1000.0f);
 
-	brickTexture = Utils::loadTexture("brick1.jpg");
+	brickTexture = Utils::loadTexture("tablero.jpg");
 	// SEE Utils.cpp, the "loadTexture()" function, the code before the mipmapping section
 }
 
 void display(GLFWwindow* window, double currentTime) {
-	glClear(GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(renderingProgram);
 

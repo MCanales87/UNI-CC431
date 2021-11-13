@@ -37,8 +37,9 @@ glm::mat4 pMat, vMat, mMat, mvMat, invTrMat, rMat;
 glm::vec3 currentLightPos, transformed;
 float lightPos[3];
 
-// white light
+// global light
 float globalAmbient[4] = { 0.7f, 0.7f, 0.7f, 1.0f };
+// white light
 float lightAmbient[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 float lightDiffuse[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 float lightSpecular[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -116,8 +117,9 @@ void setupVertices(void) {
 }
 
 void init(GLFWwindow* window) {
-	renderingProgram = Utils::createShaderProgram("./GouraudShaders/vertShader.glsl", "./GouraudShaders/fragShader.glsl");
-	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 1.0f;
+	renderingProgram = Utils::createShaderProgram("./PhongShaders/vertShader.glsl", "./PhongShaders/fragShader.glsl");
+
+	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 0.6f;
 	torLocX = 0.0f; torLocY = 0.0f; torLocZ = -1.0f;
 
 	glfwGetFramebufferSize(window, &width, &height);
@@ -128,8 +130,7 @@ void init(GLFWwindow* window) {
 }
 
 void display(GLFWwindow* window, double currentTime) {
-	glClear(GL_DEPTH_BUFFER_BIT);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(renderingProgram);
 
@@ -140,7 +141,7 @@ void display(GLFWwindow* window, double currentTime) {
 	vMat = glm::translate(glm::mat4(1.0f), glm::vec3(-cameraX, -cameraY, -cameraZ));
 
 	mMat = glm::translate(glm::mat4(1.0f), glm::vec3(torLocX, torLocY, torLocZ));
-	mMat *= glm::rotate(mMat, toRadians(35.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	mMat = glm::rotate(mMat, toRadians(35.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 
 	currentLightPos = glm::vec3(lightLoc.x, lightLoc.y, lightLoc.z);
 	amt += 0.5f;

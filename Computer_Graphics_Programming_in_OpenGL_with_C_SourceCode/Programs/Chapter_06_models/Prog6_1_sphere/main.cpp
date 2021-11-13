@@ -46,8 +46,10 @@ void setupVertices(void) {
 		pvalues.push_back((vert[ind[i]]).x);
 		pvalues.push_back((vert[ind[i]]).y);
 		pvalues.push_back((vert[ind[i]]).z);
+        
 		tvalues.push_back((tex[ind[i]]).s);
 		tvalues.push_back((tex[ind[i]]).t);
+        
 		nvalues.push_back((norm[ind[i]]).x);
 		nvalues.push_back((norm[ind[i]]).y);
 		nvalues.push_back((norm[ind[i]]).z);
